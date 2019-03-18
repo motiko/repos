@@ -16,7 +16,7 @@ const styles = theme => ({
   }
 });
 
-function RepositoriesList({ organization, repositories, classes, history }) {
+function RepositoriesList({ repositories, classes, history }) {
   return (
     <Grid container justify="center">
       {repositories.length === 0 ? (
@@ -31,7 +31,7 @@ function RepositoriesList({ organization, repositories, classes, history }) {
                 onClick={() =>
                   {
                     console.log(history.location)
-                    history.push(`/${organization}/${repo.name}`)
+                    history.push(`/${repo.full_name}`)
                   }
                 }
               >
