@@ -8,7 +8,7 @@ import RepositoriesList from "./RepositoriesList";
 import IconButton from "@material-ui/core/IconButton";
 import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 import BranchesList from "./BranchesList";
-import { Route, Link } from "react-router-dom";
+import { BrowserRouter, Route, Link } from "react-router-dom";
 import RepositoriesControllers from "./RepositoriesControllers";
 import Typography from "@material-ui/core/Typography";
 
@@ -24,7 +24,7 @@ class App extends Component {
   render() {
     const { displayedRepos } = this.state;
     return (
-      <>
+      <BrowserRouter>
         <AppBar position="static">
           <Toolbar>
             <Route
@@ -62,13 +62,10 @@ class App extends Component {
           exact
           path="/"
           render={props => (
-            <RepositoriesList
-              {...props}
-              repositories={displayedRepos}
-            />
+            <RepositoriesList {...props} repositories={displayedRepos} />
           )}
         />
-      </>
+      </BrowserRouter>
     );
   }
 }

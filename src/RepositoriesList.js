@@ -28,12 +28,9 @@ function RepositoriesList({ repositories, classes, history }) {
               <ListItem
                 button
                 key={repo.name}
-                onClick={() =>
-                  {
-                    console.log(history.location)
-                    history.push(`/${repo.full_name}`)
-                  }
-                }
+                onClick={() => {
+                  history.push(`/${repo.full_name}`);
+                }}
               >
                 <ListItemText primary={repo.name} secondary={repo.language} />
                 <ListItemSecondaryAction>
