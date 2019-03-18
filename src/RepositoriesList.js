@@ -7,7 +7,7 @@ import ListItemSecondaryAction from "@material-ui/core/ListItemSecondaryAction";
 import ListItemText from "@material-ui/core/ListItemText";
 import IconButton from "@material-ui/core/IconButton";
 import StarIcon from "@material-ui/icons/Star";
-import ForkIcon from './ForkIcon';
+import ForkIcon from "./ForkIcon";
 import CircularProgress from "@material-ui/core/CircularProgress";
 
 const styles = theme => ({
@@ -16,7 +16,7 @@ const styles = theme => ({
   }
 });
 
-function RepositoriesList({ repositories, classes }) {
+function RepositoriesList({ organization, repositories, classes, history }) {
   return (
     <Grid container justify="center">
       {repositories.length === 0 ? (
@@ -25,11 +25,20 @@ function RepositoriesList({ repositories, classes }) {
         <Grid item xs={12} md={6}>
           <List>
             {repositories.map(repo => (
-              <ListItem button key={repo.name}>
+              <ListItem
+                button
+                key={repo.name}
+                onClick={() =>
+                  {
+                    console.log(history.location)
+                    history.push(`/${organization}/${repo.name}`)
+                  }
+                }
+              >
                 <ListItemText primary={repo.name} secondary={repo.language} />
                 <ListItemSecondaryAction>
                   <IconButton disabled={true}>
-                    <ForkIcon/>
+                    <ForkIcon />
                     {repo.forks}
                   </IconButton>
                   <IconButton disabled={true}>

@@ -5,6 +5,7 @@ import * as serviceWorker from "./serviceWorker";
 import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles";
 import blue from "@material-ui/core/colors/blue";
 import pink from "@material-ui/core/colors/pink";
+import { BrowserRouter } from "react-router-dom";
 
 const theme = createMuiTheme({
   typography: {
@@ -18,7 +19,7 @@ const theme = createMuiTheme({
 
 ReactDOM.render(
   <MuiThemeProvider theme={theme}>
-    <App />
+      <App />
   </MuiThemeProvider>,
   document.getElementById("root")
 );
