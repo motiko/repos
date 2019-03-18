@@ -5,7 +5,7 @@ import RepositoriesList from "./RepositoriesList";
 import IconButton from "@material-ui/core/IconButton";
 import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 import BranchesList from "./BranchesList";
-import { BrowserRouter, Route } from "react-router-dom";
+import { HashRouter as Router, Route } from "react-router-dom";
 import RepositoriesControllers from "./RepositoriesControllers";
 import Typography from "@material-ui/core/Typography";
 
@@ -21,7 +21,7 @@ class App extends Component {
   render() {
     const { displayedRepos } = this.state;
     return (
-      <BrowserRouter>
+      <Router>
         <AppBar position="static">
           <Toolbar>
             <Route
@@ -62,7 +62,7 @@ class App extends Component {
             <RepositoriesList {...props} repositories={displayedRepos} />
           )}
         />
-      </BrowserRouter>
+      </Router>
     );
   }
 }
