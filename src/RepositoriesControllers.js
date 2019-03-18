@@ -3,6 +3,8 @@ import { withStyles } from "@material-ui/core/styles";
 import MenuItem from "@material-ui/core/MenuItem";
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
+import * as GitHub from './github';
+
 // Contants
 const ALL_LANGUAGES = "ALL_LANGUAGES";
 const organizations = ["payworks", "microsoft", "google", "facebook"];
@@ -58,17 +60,7 @@ class RepositoriesControllers extends Component {
   };
 
   async fetchRepositories() {
-    const response = await fetch(
-      `https://api.github.com/orgs/${this.state.selectedOrg}/repos`
-    );
-    const parsedResponse = await response.json();
-    const repos = parsedResponse.map(r => ({
-      name: r.name,
-      full_name: r.full_name,
-      stars: r.stargazers_count,
-      language: r.language || "N/A",
-      forks: r.forks_count
-    }));
+    const repos = await GitHub.orgRepositories(this.state.selectedOrg)
     this.setState(
       {
         selectedLanguage: ALL_LANGUAGES,
