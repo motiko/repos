@@ -27,6 +27,7 @@ class BranchesList extends Component {
     errorMessage: "",
     showError: false
   };
+
   componentDidMount() {
     this.fetchBranches();
   }
@@ -80,9 +81,7 @@ class BranchesList extends Component {
             message={<span id="error-message-id">{ errorMessage }</span>}
             action={[
               <IconButton
-                key="close"
                 aria-label="Close"
-                color="inherit"
                 className={classes.close}
                 onClick={this.hideError}
               >

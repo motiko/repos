@@ -1,14 +1,11 @@
 import React, { Component } from "react";
-import MenuItem from "@material-ui/core/MenuItem";
-import FormControl from "@material-ui/core/FormControl";
-import Select from "@material-ui/core/Select";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import RepositoriesList from "./RepositoriesList";
 import IconButton from "@material-ui/core/IconButton";
 import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 import BranchesList from "./BranchesList";
-import { BrowserRouter, Route, Link } from "react-router-dom";
+import { BrowserRouter, Route } from "react-router-dom";
 import RepositoriesControllers from "./RepositoriesControllers";
 import Typography from "@material-ui/core/Typography";
 
