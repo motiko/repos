@@ -1,3 +1,5 @@
+import axios from "axios";
+
 export async function orgRepositories(organization) {
   const parsedResponse = await getJson(`/orgs/${organization}/repos`);
   const repos = parsedResponse.map(r => ({
@@ -19,9 +21,12 @@ export async function repoBrnaches(fullName) {
 }
 
 async function getJson(path) {
-  const response = await fetch(`https://api.github.com${path}`);
-  if (response.ok) return response.json();
-  else {
-    throw new Error(response.statusText);
-  }
+    const response = await axios({
+      method: "get",
+      url: `https://api.github.com${path}`
+    });
+    if (response.status === 200) return response.data;
+    else {
+      throw new Error(response.statusText);
+    }
 }
