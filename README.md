@@ -1,5 +1,5 @@
 # Live 
-The app available live on 
+The app available [live](https://motiko.github.io/repos/)
 
 # Build
 Clone the repository enter the directory and run
