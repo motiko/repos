@@ -19,3 +19,13 @@ sticking to style guide, and using automation tools (like prettier and eslint)
  * State of filters is not saved between navigation
  * Scrolling position is not saved between navigation
  * Theming and design refinement
+ * Variable types
+
+# Libraries
+Create react app - Rapid prototyping, zero-config, hot-reloading, build secripts, test automation, and deploy scripts to various platforms. 
+Material-UI - Extensive component library, fits for mobile, accessiblity support, decent look without much theming,support for SSR.
+Axios - Runs both on client and server, easier mocking, support for older browsers with good api.
+React Router - Works both client and server. Support for environment where limited routing conig is avaliable (like gh-pages)
+Cypress - Test suite with automatic waiting, and network traffic control that runs in a real browser used for e2e.
+react-testing-library - Library that encourages writing maintanable tests for react. (testing components the way they are used)
+
