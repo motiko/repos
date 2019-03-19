@@ -1,0 +1,42 @@
+[
+  {
+    "name": "develop",
+    "commit": {
+      "sha": "37c7cb275b404de5680c95842b83283d700ba29a",
+      "url": "https://api.github.com/repos/payworks/MPBSignatureViewController/commits/37c7cb275b404de5680c95842b83283d700ba29a"
+    },
+    "protected": false
+  },
+  {
+    "name": "feature/add_new_schemes",
+    "commit": {
+      "sha": "575ac5c3e66d9a28d8666a3341cca9d3e2e93a05",
+      "url": "https://api.github.com/repos/payworks/MPBSignatureViewController/commits/575ac5c3e66d9a28d8666a3341cca9d3e2e93a05"
+    },
+    "protected": false
+  },
+  {
+    "name": "feature/fix_xcode7_ios9",
+    "commit": {
+      "sha": "7fcc80b430357feb3fe665433530ac643eb398b4",
+      "url": "https://api.github.com/repos/payworks/MPBSignatureViewController/commits/7fcc80b430357feb3fe665433530ac643eb398b4"
+    },
+    "protected": false
+  },
+  {
+    "name": "feature/5-without-merchant-name",
+    "commit": {
+      "sha": "37c7cb275b404de5680c95842b83283d700ba29a",
+      "url": "https://api.github.com/repos/payworks/MPBSignatureViewController/commits/37c7cb275b404de5680c95842b83283d700ba29a"
+    },
+    "protected": false
+  },
+  {
+    "name": "master",
+    "commit": {
+      "sha": "3652cf9b175538494cd986d91c1d2a19b15084dd",
+      "url": "https://api.github.com/repos/payworks/MPBSignatureViewController/commits/3652cf9b175538494cd986d91c1d2a19b15084dd"
+    },
+    "protected": false
+  }
+]

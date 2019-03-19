@@ -1,5 +1,14 @@
 describe("End to end test", () => {
+  before(() => {
+  });
   beforeEach(() => {
+    cy.server()
+    cy.route("GET", "https://api.github.com/orgs/payworks/repos", "fx:repos");
+    cy.route(
+      "GET",
+      "https://api.github.com/repos/payworks/MPBSignatureViewController/branches",
+      "fx:branches"
+    );
     cy.visit("/");
   });
 
@@ -34,10 +43,10 @@ describe("End to end test", () => {
       .first()
       .click()
       .then($repo => {
-        const repoFullname = $repo.attr("data-cy-fullname")
-        cy.url().should("include", repoFullname );
-        cy.contains(repoFullname)
-        cy.contains('master')
+        const repoFullname = $repo.attr("data-cy-fullname");
+        cy.url().should("include", repoFullname);
+        cy.contains(repoFullname);
+        cy.contains("master");
       });
   });
 });
