@@ -18,6 +18,7 @@ function renderWithRouter(
   };
 }
 
+
 describe("BranchesList", () => {
   it("renders without crashing", () => {
     render(
@@ -27,8 +28,4 @@ describe("BranchesList", () => {
     );
   });
 
-  it("renders branches list", () => {
-    const { getByText } = render(<BranchesList repositories={repositories} />);
-    expect(getByText(repositories[0].name)).toBeInTheDocument();
-  });
 });

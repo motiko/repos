@@ -76,7 +76,7 @@ class RepositoriesControllers extends Component {
     return (
       <>
         <FormControl>
-          <Select value={selectedOrg} onChange={this.setOrganization}>
+          <Select data-cy="organization-select" value={selectedOrg} onChange={this.setOrganization}>
             {organizations.map(org => (
               <MenuItem value={org} key={org}>
                 {org}
@@ -85,12 +85,12 @@ class RepositoriesControllers extends Component {
           </Select>
         </FormControl>
         <FormControl className={classes.formControl}>
-          <Select value={selectedLanguage} onChange={this.setLanguage}>
+          <Select data-cy="language-select" value={selectedLanguage} onChange={this.setLanguage}>
             <MenuItem value={ALL_LANGUAGES}>
               <em>All</em>
             </MenuItem>
             {languagesSelector(this.state).map(language => (
-              <MenuItem value={language} key={language}>
+              <MenuItem value={language} key={language} data-cy={`language-${language}`}>
                 {language}
               </MenuItem>
             ))}

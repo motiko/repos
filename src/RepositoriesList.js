@@ -31,6 +31,8 @@ function RepositoriesList({ repositories, classes, history }) {
                 onClick={() => {
                   history.push(`/${repo.full_name}`);
                 }}
+                data-cy="repository"
+                data-cy-fullname={repo.full_name}
               >
                 <ListItemText primary={repo.name} secondary={repo.language} />
                 <ListItemSecondaryAction>
@@ -38,7 +40,7 @@ function RepositoriesList({ repositories, classes, history }) {
                     <ForkIcon />
                     {repo.forks}
                   </IconButton>
-                  <IconButton disabled={true}>
+                  <IconButton disabled={true} data-cy={`stars`}>
                     <StarIcon />
                     {repo.stars}
                   </IconButton>
