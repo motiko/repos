@@ -15,8 +15,6 @@ sticking to style guide, and using automation tools (like prettier and eslint)
  * Error handling is not extensive enough and doesn't diferentiate between different type of errors.
  * No error message is displayed in repositories page
  * Unit and integration tests are not complete
- * State of filters is not saved between navigation
- * Scrolling position is not saved between navigation
  * Theming and design refinement
  * Variable types
 

@@ -3,11 +3,12 @@ import { withStyles } from "@material-ui/core/styles";
 import MenuItem from "@material-ui/core/MenuItem";
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
-import * as GitHub from './github';
+import * as GitHub from "./github";
 
 // Contants
-const ALL_LANGUAGES = "ALL_LANGUAGES";
 const organizations = ["payworks", "microsoft", "google", "facebook"];
+const ALL_LANGUAGES = "ALL_LANGUAGES";
+const DEFAULT_ORG = organizations[0];
 // Helper methods
 const uniqueLanguages = repos =>
   Array.from(new Set(repos.map(r => r.language)));
@@ -19,7 +20,7 @@ const sortedRepos = repos => repos.sort((a, b) => b.stars - a.stars);
 // Selectors
 const reposSelector = ({ repos, selectedLanguage }) =>
   sortedRepos(filteredRepos(repos, selectedLanguage));
-const languagesSelector =  ({repos}) => uniqueLanguages(repos)
+const languagesSelector = ({ repos }) => uniqueLanguages(repos);
 // Styles
 const styles = theme => ({
   formControl: {
@@ -29,45 +30,63 @@ const styles = theme => ({
 
 class RepositoriesControllers extends Component {
   state = {
-    selectedOrg: organizations[0],
+    selectedOrg: DEFAULT_ORG,
     selectedLanguage: ALL_LANGUAGES,
     repos: []
   };
 
   componentDidMount() {
-    this.fetchRepositories();
+    const organization = this.restoreStateFromSearchParams();
+    this.fetchRepositories(organization);
   }
 
   setOrganization = event => {
     this.props.setDisplayedRepos([]);
-    this.setState(
-      {
-        selectedOrg: event.target.value,
-        selectedLanguage: ALL_LANGUAGES
-      },
-      this.fetchRepositories
-    );
+    const selectedOrg = event.target.value;
+    // this.props.history.push({search: `?organization=${selectedOrg}`})
+    this.saveStateToSearchParams(selectedOrg, ALL_LANGUAGES);
+    this.setState({
+      selectedOrg,
+      selectedLanguage: ALL_LANGUAGES
+    });
+    this.fetchRepositories(selectedOrg);
   };
 
   setProcessedRepos = () => {
-    this.props.setDisplayedRepos(
-      reposSelector(this.state)
-    );
+    this.props.setDisplayedRepos(reposSelector(this.state));
   };
 
   setLanguage = event => {
-    this.setState({ selectedLanguage: event.target.value }, this.setProcessedRepos);
+    const selectedLanguage = event.target.value;
+    this.saveStateToSearchParams(this.state.selectedOrg, selectedLanguage);
+    this.setState({ selectedLanguage }, this.setProcessedRepos);
   };
 
-  async fetchRepositories() {
-    const repos = await GitHub.orgRepositories(this.state.selectedOrg)
+  async fetchRepositories(organization) {
+    const repos = await GitHub.orgRepositories(organization);
     this.setState(
       {
-        selectedLanguage: ALL_LANGUAGES,
         repos
       },
       this.setProcessedRepos
     );
+  }
+
+  saveStateToSearchParams(organization, language) {
+    this.props.history.replace({
+      search: `?organization=${organization}&language=${language}`
+    });
+  }
+
+  restoreStateFromSearchParams() {
+    const parsedUrl = new URLSearchParams(this.props.history.location.search);
+    const selectedOrg = parsedUrl.get("organization") || DEFAULT_ORG;
+    const selectedLanguage = parsedUrl.get("language") || ALL_LANGUAGES;
+    this.setState({
+      selectedOrg,
+      selectedLanguage
+    });
+    return selectedOrg;
   }
 
   render() {
@@ -76,7 +95,11 @@ class RepositoriesControllers extends Component {
     return (
       <>
         <FormControl>
-          <Select data-cy="organization-select" value={selectedOrg} onChange={this.setOrganization}>
+          <Select
+            data-cy="organization-select"
+            value={selectedOrg}
+            onChange={this.setOrganization}
+          >
             {organizations.map(org => (
               <MenuItem value={org} key={org}>
                 {org}
@@ -85,12 +108,20 @@ class RepositoriesControllers extends Component {
           </Select>
         </FormControl>
         <FormControl className={classes.formControl}>
-          <Select data-cy="language-select" value={selectedLanguage} onChange={this.setLanguage}>
+          <Select
+            data-cy="language-select"
+            value={selectedLanguage}
+            onChange={this.setLanguage}
+          >
             <MenuItem value={ALL_LANGUAGES}>
               <em>All</em>
             </MenuItem>
             {languagesSelector(this.state).map(language => (
-              <MenuItem value={language} key={language} data-cy={`language-${language}`}>
+              <MenuItem
+                value={language}
+                key={language}
+                data-cy={`language-${language}`}
+              >
                 {language}
               </MenuItem>
             ))}
